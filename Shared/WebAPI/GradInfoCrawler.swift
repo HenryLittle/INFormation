@@ -9,20 +9,19 @@ import Foundation
 import SwiftUI
 import Combine
 
-class GDInfoCrawler: ObservableObject {
-    @Published var infoList: [UGNotice] = []
+class GRInfoCrawler: ObservableObject {
+    @Published var infoList: [GRNotic] = []
     
-    let jwburlstr = "http://jwbinfosys.zju.edu.cn/jwggcx.aspx?type=%d"
-    let jwbregex = "\\('(?<linkAddress>https*:\\/\\/.*?)','.*?0\\/>\\ *(?<noticeTitle>.*?)<\\/a>.*?<td>(?<noticeSource>.*?)<\\/td>.*?<td>(?<noticeDate>.*?)<\\/td>"
-    let jwbregexComponents = ["linkAddress", "noticeTitle", "noticeSource", "noticeDate"]
+    let grsurlstr = "http://grs.zju.edu.cn/redir.php?catalog=16313"
+    let grsregex = "catalog_id=(?<catalogId>[0-9]+)&object_id=(?<objectId>[0-9]+).*?title=\"(?<noticeTitle>.*?)\".*?e\">(?<noticeDate>[0-9\\-]*?)<"
+    let grregexComponents = ["catalogId", "objectId", "noticeTitle", "noticeDate"]
     
     init(){
-        fetch(type: 1)
+        fetch()
     }
     
-    func fetch(type: Int) {
-        let actualurlstr = String(format: jwburlstr, type)
-        guard let url = URL(string: actualurlstr) else {
+    func fetch() {
+        guard let url = URL(string: grsurlstr) else {
             fatalError("Failed to form proper URL")
         }
 
@@ -31,16 +30,17 @@ class GDInfoCrawler: ObservableObject {
             guard let data = data else {
                 fatalError("Decode failed")
             }
-            // jwbinfo uses GB2312 encoding
-            let encoding = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
-            let document = NSString(data: data, encoding: encoding)! as String
+            // check data size
+            print(data)
+            // grs uses UTF-8, this decoding method allows unkown bytes (safer)
+            let document = String(decoding: data, as: UTF8.self)
             // publish the result and use in SwiftUI
-            let matches = document.matchingStrings(regex: self.jwbregex)
+            let matches = document.matchingStrings(regex: self.grsregex, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
             matches.forEach{ match in
-                let notice = UGNotice(link: UGInfoCrawler.getComponent(from: match, withName: self.jwbregexComponents[0], in: document),
-                                      title: UGInfoCrawler.getComponent(from: match, withName: self.jwbregexComponents[1], in: document),
-                                      source: UGInfoCrawler.getComponent(from: match, withName: self.jwbregexComponents[2], in: document),
-                                      date: UGInfoCrawler.getComponent(from: match, withName: self.jwbregexComponents[3], in: document))
+                let notice = GRNotic(catalogId: document.getComponent(from: match, withName: self.grregexComponents[0]),
+                                     objectId: document.getComponent(from: match, withName: self.grregexComponents[1]),
+                                     title: document.getComponent(from: match, withName: self.grregexComponents[2]),
+                                     date: document.getComponent(from: match, withName: self.grregexComponents[3]))
                 DispatchQueue.main.async {
                     self.infoList.append(notice)
                 }
@@ -59,3 +59,10 @@ class GDInfoCrawler: ObservableObject {
     }
 }
 
+struct GRNotic: Identifiable {
+    var id = UUID()
+    var catalogId: String = "16313"
+    var objectId: String = ""
+    var title: String = "No title"
+    var date: String = "- - -"
+}

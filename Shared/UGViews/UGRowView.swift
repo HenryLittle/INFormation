@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RowView: View {
+struct UGRowView: View {
     @State var notice: UGNotice = UGNotice()
     
     var body: some View {
@@ -16,8 +16,12 @@ struct RowView: View {
                 .fontWeight(.bold)
                 .lineLimit(3)
                 .truncationMode(.tail)
+            Spacer()
+                .frame(height: 4)
             HStack{
                 Text(notice.source)
+                    .font(.caption)
+                Text(notice.format)
                     .font(.caption)
                 Spacer()
                 Text(notice.date)
@@ -31,6 +35,6 @@ struct RowView: View {
 
 struct RowView_Previews: PreviewProvider {
     static var previews: some View {
-        RowView()
+        UGRowView()
     }
 }

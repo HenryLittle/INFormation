@@ -17,10 +17,12 @@ class UGInfoCrawler: ObservableObject {
     private let jwbregexComponents = ["linkAddress", "noticeTitle", "noticeSource", "noticeDate"]
     
     init(type: Int = 1){
+        print("Create crawler")
         fetch(type: type)
     }
     
     func fetch(type: Int) {
+        print("Updating list")
         infoList.removeAll()
         let actualurlstr = String(format: jwburlstr, type)
         guard let url = URL(string: actualurlstr) else {
@@ -38,10 +40,10 @@ class UGInfoCrawler: ObservableObject {
             // publish the result and use in SwiftUI
             let matches = document.matchingStrings(regex: self.jwbregex)
             matches.forEach{ match in
-                let notice = UGNotice(link: UGInfoCrawler.getComponent(from: match, withName: self.jwbregexComponents[0], in: document),
-                                      title: UGInfoCrawler.getComponent(from: match, withName: self.jwbregexComponents[1], in: document),
-                                      source: UGInfoCrawler.getComponent(from: match, withName: self.jwbregexComponents[2], in: document),
-                                      date: UGInfoCrawler.getComponent(from: match, withName: self.jwbregexComponents[3], in: document))
+                let notice = UGNotice(link: document.getComponent(from: match, withName: self.jwbregexComponents[0]),
+                                      title: document.getComponent(from: match, withName: self.jwbregexComponents[1]),
+                                      source: document.getComponent(from: match, withName: self.jwbregexComponents[2]),
+                                      date: document.getComponent(from: match, withName: self.jwbregexComponents[3]))
                 DispatchQueue.main.async {
                     self.infoList.append(notice)
                 }
@@ -50,14 +52,6 @@ class UGInfoCrawler: ObservableObject {
         task.resume()
     }
     
-    static func getComponent(from match: NSTextCheckingResult, withName name: String, in document: String) -> String {
-        let mrange = match.range(withName: name)
-        if mrange.location != NSNotFound, let range = Range(mrange, in: document) {
-            return String(document[range])
-        } else {
-            return "Match not found!"
-        }
-    }
 }
 
 enum UGNoticeType: Int, CaseIterable{
