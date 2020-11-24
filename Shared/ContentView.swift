@@ -12,7 +12,7 @@ struct ContentView: View {
     @State var selectedSource: SourceMenu = .undergraduate
     
     var body: some View {
-        HStack(alignment: .center){
+        NavigationView{
             ScrollView(.vertical, showsIndicators: false){
                 VStack(alignment: .leading, spacing: 24){
                     ForEach(SourceMenu.allCases){ source in
@@ -23,6 +23,7 @@ struct ContentView: View {
                             .onTapGesture{
                                 self.selectedSource = source
                             }
+                            .animation(.easeInOut)
                     }
                 }
                 .frame(width: 200)
@@ -30,7 +31,7 @@ struct ContentView: View {
                 
             }
             selectedSource.contentView
-        }
+        }.frame(minHeight: 800)
     }
 }
 

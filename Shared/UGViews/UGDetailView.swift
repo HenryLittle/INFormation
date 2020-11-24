@@ -25,8 +25,9 @@ struct UGDetailView: View {
                 format: selected.format
             )
             if ["docx", "doc"].contains(selected.format) {
-                Text("Unsupported preview content type, please view in Safari")
-                    .foregroundColor(.gray)
+//                Text("Unsupported preview content type, please view in Safari")
+//                    .foregroundColor(.gray)
+                MyPreview(url: urlencoded, name: "\(selected.title).\(selected.format)")
             } else {
                 WebView(url: urlencoded)
             }

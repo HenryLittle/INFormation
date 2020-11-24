@@ -17,6 +17,10 @@
 		3F8B7817256CFFD80050D629 /* SourceMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B7815256CFFD80050D629 /* SourceMenu.swift */; };
 		3F8B781E256D184C0050D629 /* GRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B781D256D184C0050D629 /* GRView.swift */; };
 		3F8B781F256D184C0050D629 /* GRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B781D256D184C0050D629 /* GRView.swift */; };
+		3F9280FB256D30A4002D2939 /* QLPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9280FA256D30A4002D2939 /* QLPreview.swift */; };
+		3F9280FC256D30A4002D2939 /* QLPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9280FA256D30A4002D2939 /* QLPreview.swift */; };
+		3F928102256D3667002D2939 /* DownloadUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F928101256D3667002D2939 /* DownloadUtils.swift */; };
+		3F928103256D3667002D2939 /* DownloadUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F928101256D3667002D2939 /* DownloadUtils.swift */; };
 		3FCA524E256D260D00A2319C /* GRRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCA524D256D260D00A2319C /* GRRowView.swift */; };
 		3FCA524F256D260D00A2319C /* GRRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCA524D256D260D00A2319C /* GRRowView.swift */; };
 		3FCA5255256D282000A2319C /* GRDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCA5254256D282000A2319C /* GRDetailView.swift */; };
@@ -70,6 +74,8 @@
 		3F74179F256BCFA3000ACFBE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3F8B7815256CFFD80050D629 /* SourceMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceMenu.swift; sourceTree = "<group>"; };
 		3F8B781D256D184C0050D629 /* GRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRView.swift; sourceTree = "<group>"; };
+		3F9280FA256D30A4002D2939 /* QLPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLPreview.swift; sourceTree = "<group>"; };
+		3F928101256D3667002D2939 /* DownloadUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadUtils.swift; sourceTree = "<group>"; };
 		3FCA524D256D260D00A2319C /* GRRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRRowView.swift; sourceTree = "<group>"; };
 		3FCA5254256D282000A2319C /* GRDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRDetailView.swift; sourceTree = "<group>"; };
 		3FCA5260256D288100A2319C /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
@@ -145,6 +151,7 @@
 				3FD530F72567D11D00B1ED0A /* WebView.swift */,
 				3F65B9912567EE02002A7FE6 /* FmtTagView.swift */,
 				3FCA5260256D288100A2319C /* DetailHeaderView.swift */,
+				3F9280FA256D30A4002D2939 /* QLPreview.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -165,6 +172,7 @@
 			children = (
 				3FE152E02566F53B0024535E /* UnderGradInfoCrawler.swift */,
 				3FDD6031256B895600387898 /* GradInfoCrawler.swift */,
+				3F928101256D3667002D2939 /* DownloadUtils.swift */,
 			);
 			path = WebAPI;
 			sourceTree = "<group>";
@@ -409,6 +417,7 @@
 				3FE152E12566F53B0024535E /* UnderGradInfoCrawler.swift in Sources */,
 				3FE152CA2566F4A60024535E /* UGView.swift in Sources */,
 				3FCA5268256D2AB900A2319C /* GRListView.swift in Sources */,
+				3F9280FB256D30A4002D2939 /* QLPreview.swift in Sources */,
 				3FCA5261256D288100A2319C /* DetailHeaderView.swift in Sources */,
 				3FCA524E256D260D00A2319C /* GRRowView.swift in Sources */,
 				3F5F91F1256BCC24009A2339 /* UGListView.swift in Sources */,
@@ -417,6 +426,7 @@
 				3F8B7816256CFFD80050D629 /* SourceMenu.swift in Sources */,
 				3FD530F82567D11D00B1ED0A /* WebView.swift in Sources */,
 				3FDD6032256B895600387898 /* GradInfoCrawler.swift in Sources */,
+				3F928102256D3667002D2939 /* DownloadUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +443,7 @@
 				3FE152E22566F53B0024535E /* UnderGradInfoCrawler.swift in Sources */,
 				3FE152CB2566F4A60024535E /* UGView.swift in Sources */,
 				3FCA5269256D2AB900A2319C /* GRListView.swift in Sources */,
+				3F9280FC256D30A4002D2939 /* QLPreview.swift in Sources */,
 				3FCA5262256D288100A2319C /* DetailHeaderView.swift in Sources */,
 				3FCA524F256D260D00A2319C /* GRRowView.swift in Sources */,
 				3F5F91F2256BCC24009A2339 /* UGListView.swift in Sources */,
@@ -441,6 +452,7 @@
 				3F8B7817256CFFD80050D629 /* SourceMenu.swift in Sources */,
 				3FD530F92567D11D00B1ED0A /* WebView.swift in Sources */,
 				3FDD6033256B895600387898 /* GradInfoCrawler.swift in Sources */,
+				3F928103256D3667002D2939 /* DownloadUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
