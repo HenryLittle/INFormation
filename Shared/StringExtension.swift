@@ -8,6 +8,7 @@
 import Foundation
 
 extension String {
+    
     func matchingStrings(regex: String, options: NSRegularExpression.Options = [.allowCommentsAndWhitespace]) -> [NSTextCheckingResult] {
         guard let regex = try? NSRegularExpression(pattern: regex, options: options) else { return [] }
         let nsString = self as NSString
