@@ -1,14 +1,14 @@
 //
-//  RowView.swift
+//  GRRowView.swift
 //  INFormation
 //
-//  Created by 林柯舟 on 2020/11/20.
+//  Created by 林柯舟 on 2020/11/24.
 //
 
 import SwiftUI
 
-struct UGRowView: View {
-    var notice: UGNotice = UGNotice()
+struct GRRowView: View {
+    var notice: GRNotice = GRNotice()
     
     var body: some View {
         VStack(alignment: .leading){
@@ -19,22 +19,17 @@ struct UGRowView: View {
             Spacer()
                 .frame(height: 4)
             HStack{
-                Text(notice.source)
-                    .font(.caption)
-                Text(notice.format)
-                    .font(.caption)
                 Spacer()
                 Text(notice.date)
                     .font(.caption)
             }
         }
         .padding([.all], 4)
-        
     }
 }
 
-struct RowView_Previews: PreviewProvider {
+struct GRRowView_Previews: PreviewProvider {
     static var previews: some View {
-        UGRowView()
+        GRRowView()
     }
 }

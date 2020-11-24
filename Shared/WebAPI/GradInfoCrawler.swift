@@ -10,9 +10,9 @@ import SwiftUI
 import Combine
 
 class GRInfoCrawler: ObservableObject {
-    @Published var infoList: [GRNotic] = []
+    @Published var infoList: [GRNotice] = []
     
-    let grsurlstr = "http://grs.zju.edu.cn/redir.php?catalog=16313"
+    let grsurlstr = "http://grs.zju.edu.cn/redir.php?catalog_id=16313"
     let grsregex = "catalog_id=(?<catalogId>[0-9]+)&object_id=(?<objectId>[0-9]+).*?title=\"(?<noticeTitle>.*?)\".*?e\">(?<noticeDate>[0-9\\-]*?)<"
     let grregexComponents = ["catalogId", "objectId", "noticeTitle", "noticeDate"]
     
@@ -37,7 +37,7 @@ class GRInfoCrawler: ObservableObject {
             // publish the result and use in SwiftUI
             let matches = document.matchingStrings(regex: self.grsregex, options: [.allowCommentsAndWhitespace, .dotMatchesLineSeparators])
             matches.forEach{ match in
-                let notice = GRNotic(catalogId: document.getComponent(from: match, withName: self.grregexComponents[0]),
+                let notice = GRNotice(catalogId: document.getComponent(from: match, withName: self.grregexComponents[0]),
                                      objectId: document.getComponent(from: match, withName: self.grregexComponents[1]),
                                      title: document.getComponent(from: match, withName: self.grregexComponents[2]),
                                      date: document.getComponent(from: match, withName: self.grregexComponents[3]))
@@ -59,7 +59,7 @@ class GRInfoCrawler: ObservableObject {
     }
 }
 
-struct GRNotic: Identifiable {
+struct GRNotice: Identifiable, Hashable {
     var id = UUID()
     var catalogId: String = "16313"
     var objectId: String = ""

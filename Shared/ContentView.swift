@@ -28,7 +28,7 @@ struct ContentView: View {
                 .frame(width: 200)
                 .padding(.top, 16)
                 
-            }.listStyle(SidebarListStyle())
+            }
             selectedSource.contentView
         }
     }

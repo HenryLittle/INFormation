@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct GRView: View {
+    
+    @State var selected: GRNotice?
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct GRView_Previews: PreviewProvider {
-    static var previews: some View {
-        GRView()
+        NavigationView{
+            GRListView(selected: $selected)
+                .frame(width: 300)
+            if selected != nil {
+                GRDetailView(selected: selected!)
+                    .frame(width: 800)
+            }
+        }
     }
 }
