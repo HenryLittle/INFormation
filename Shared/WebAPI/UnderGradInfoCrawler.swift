@@ -17,12 +17,10 @@ class UGInfoCrawler: ObservableObject {
     private let jwbregexComponents = ["linkAddress", "noticeTitle", "noticeSource", "noticeDate"]
     
     init(type: Int = 1){
-        print("Create crawler")
         fetch(type: type)
     }
     
     func fetch(type: Int) {
-        print("Updating list")
         infoList.removeAll()
         let actualurlstr = String(format: jwburlstr, type)
         guard let url = URL(string: actualurlstr) else {

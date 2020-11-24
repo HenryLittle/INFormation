@@ -19,7 +19,6 @@ struct UGView: View {
                 .frame(width: 300)
             if selected != nil {
                 UGDetailView(selected: selected!)
-                    .frame(width: 800)
             }
         }
     }

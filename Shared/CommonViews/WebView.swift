@@ -10,16 +10,10 @@ import WebKit
 
 struct WebView {
     var url: String
+    var source: WebSource = .common
     
     func makeWebView() -> WKWebView {
-        guard let url = URL(string: self.url) else {
-            print("illegal url")
-            return WKWebView()
-        }
-        let request = URLRequest(url: url)
-        let webView = WKWebView()
-        webView.load(request)
-        return webView
+        WKWebView()
     }
     
     func updateWebView(wkWebView: WKWebView) {
@@ -27,9 +21,23 @@ struct WebView {
             print("illegal url")
             return
         }
-        print(self.url)
         let request = URLRequest(url: url)
         wkWebView.load(request)
+        wkWebView.configuration.userContentController.addUserScript(WKUserScript(source: source.jsScript, injectionTime: .atDocumentEnd, forMainFrameOnly: false))
+    }
+}
+
+enum WebSource {
+    case grs
+    case ugs
+    case common
+    
+    var jsScript: String {
+        switch self{
+        case .grs: return "document.body.innerHTML = document.getElementsByClassName('con-xxgg-right')[0].innerHTML;"
+//        case .grs: return "document.getElementsByClassName('cg-content-left')[0].remove()"
+        default:   return ""
+        }
     }
 }
 

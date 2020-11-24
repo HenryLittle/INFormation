@@ -20,7 +20,7 @@ struct GRDetailView: View {
     
     var body: some View {
         DetailHeaderView(title: selected.title, urlencoded: url)
-        WebView(url: url)
+        WebView(url: url, source: .grs)
     }
 }
 

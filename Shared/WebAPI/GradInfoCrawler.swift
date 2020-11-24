@@ -30,8 +30,6 @@ class GRInfoCrawler: ObservableObject {
             guard let data = data else {
                 fatalError("Decode failed")
             }
-            // check data size
-            print(data)
             // grs uses UTF-8, this decoding method allows unkown bytes (safer)
             let document = String(decoding: data, as: UTF8.self)
             // publish the result and use in SwiftUI

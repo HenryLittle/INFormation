@@ -15,11 +15,9 @@ struct MyPreview: NSViewRepresentable {
     var closed = true
 
     func makeNSView(context: NSViewRepresentableContext<MyPreview>) -> QLPreviewView {
-        let preview = QLPreviewView(frame: .zero, style: .normal)
-        preview?.autostarts = true
-//        preview?.previewItem = URL(string: url)! as QLPreviewItem
-        //if preview != nil { updatePreview(preview: preview!) }
-        return preview ?? QLPreviewView()
+        let preview = QLPreviewView()
+        preview.autostarts = true
+        return preview
     }
 
     func updateNSView(_ nsView: QLPreviewView, context: NSViewRepresentableContext<MyPreview>) {
@@ -33,22 +31,23 @@ struct MyPreview: NSViewRepresentable {
         DownloadUtils.downloadFile(from: actualUrl, withName: name) { fileUrl in
             if let murl = fileUrl {
                 DispatchQueue.main.async {
-                    print("setting preview")
                     // this is a hack to check whether QLPreview has closed
-                    // might not be statble
-                    if preview.superview != nil {
+                    // not statble
+                    if preview.isActivated {
                         preview.previewItem = murl as QLPreviewItem
                     }
                 }
             }
         }
     }
-    
-    static func dismantleNSView(_ nsView: QLPreviewView, coordinator: ()) {
-        nsView.close()
-    }
-    
 
     typealias NSViewType = QLPreviewView
 
+}
+
+extension QLPreviewView {
+    var isActivated: Bool {
+        let str = String(describing: self)
+        return !str.contains("deactivated")
+    }
 }
