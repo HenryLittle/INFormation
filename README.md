@@ -4,4 +4,4 @@ A SwiftUI macOS app that helps me check recent notces form ZJU's Undergraduate S
 
 - Currently only supports macOS Big Sur
 
-![preview](/Users/linc/XcodeProjects/INFormation/images/preview.png)
+![preview](./images/preview.png)
